@@ -1,0 +1,47 @@
+# ============================================
+# A.V.I. - Git Ignore Rules
+# ============================================
+
+# Secrets - intentionally kept in repo per user request
+# (API keys for OpenRouter, LiveKit, Inworld, etc. live in .env)
+!.env.example
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+
+# Virtual environment
+venv/
+env/
+ENV/
+.venv/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Data and logs (user-specific)
+data/memory.json
+logs/
+*.log
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Nested duplicate folder
+A.V.I/
+
+# Build/dist
+build/
+dist/
+*.spec

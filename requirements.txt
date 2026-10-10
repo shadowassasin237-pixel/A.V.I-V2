@@ -1,0 +1,60 @@
+# A.V.I. - Artificial Voice Intelligence
+
+livekit==1.1.18
+livekit-agents==1.8.2
+livekit-plugins-openai
+livekit-plugins-silero
+
+# Desktop audio playback + microphone support
+numpy>=1.26
+sounddevice>=0.5.1
+
+# Optional/local microphone compatibility
+SpeechRecognition>=3.10
+PyAudio>=0.2.13
+Pillow>=10.0
+opencv-python>=4.9
+openai>=1.40
+
+# OpenRouter / web tools
+ddgs>=9.0
+requests>=2.31
+beautifulsoup4>=4.12
+lxml>=5.0
+
+python-dotenv>=1.0
+
+# ─── MYRAA-derived desktop control tools (Round 1) ───────────
+# Mouse / keyboard automation (pyautogui, pygetwindow, pyperclip)
+pyautogui==0.9.54
+pygetwindow==0.0.9
+pyperclip==1.9.0
+
+# Windows-only native automation
+pywin32==308
+pywinauto==0.6.9
+comtypes ; sys_platform == "win32"
+
+# Screenshots / vision
+mss==10.2.0
+screeninfo>=0.8
+
+# System / hardware introspection
+psutil==6.1.1
+WMI>=1.5.1 ; sys_platform == "win32"
+py-cpuinfo>=9.0
+
+# Safer file deletion (sends to Recycle Bin instead of permanent delete)
+Send2Trash==1.8.3
+
+# Volume control (Windows audio endpoint)
+pycaw==20230407
+
+# Optional OCR (graceful fallback if Tesseract isn't installed locally)
+pytesseract==0.3.13
+
+# Best-effort NVIDIA GPU stats (optional import)
+nvidia-ml-py3==7.352.0 ; sys_platform == "win32"
+
+# Modern Desktop UI (PyWebView Edge Chromium engine)
+pywebview>=6.0
