@@ -1,0 +1,59 @@
+============================================================
+A.V.I. - Artificial Voice Intelligence
+============================================================
+  Project root : C:\Users\New\OneDrive\Desktop\A.V.I
+  LLM provider : OpenRouter
+  LLM model    : openai/gpt-4o-mini
+  LLM key      : (set)
+
+  Voice provider : Inworld via LiveKit
+  Voice          : Ashley
+  TTS model      : inworld/inworld-tts-2
+  LiveKit config : (set)
+
+A.V.I. LiveKit voice agent registered with LiveKit Cloud.
+A.V.I. Speaker: Inworld TTS bridge initialized.
+A.V.I. Voice: Ashley
+A.V.I. TTS: inworld/inworld-tts-2
+A.V.I.: Sentinel neural core initialized.
+[A.V.I] Connecting desktop voice client to LiveKit...
+[A.V.I] Connected to room: avi-room
+[A.V.I] Dispatched agent 'avi' to room 'avi-room'.
+[A.V.I] Microphones detected: 3
+[A.V.I] Speakers detected: 4
+[A.V.I] Microphone NOT published (echo prevention).
+[A.V.I] Desktop LiveKit link ONLINE. Asking the agent for Ashley TTS readiness...
+[A.V.I] Participant connected: agent-AJ_nyUUprjgAwgX
+[A.V.I] Ashley TTS READY (inworld/inworld-tts-2).
+[A.V.I] Track received from agent-AJ_nyUUprjgAwgX: 1
+[A.V.I] Receiving Ashley audio from agent-AJ_nyUUprjgAwgX
+A.V.I.: Holographic interface synchronized.
+A.V.I.: Voice matrix calibrated and standing by.
+A.V.I.: Threat assessment protocols active.
+A.V.I.: All primary systems operational. I am ready.
+
+Starting graphical interface...
+
+[A.V.I] Speech request sent to Ashley TTS.
+[A.V.I] Starting remote audio playback 48000Hz / 1ch
+[A.V.I] Speech request sent to Ashley TTS.
+[A.V.I] Speech request sent to Ashley TTS.
+[A.V.I] Speech request sent to Ashley TTS.
+[A.V.I] Speech request sent to Ashley TTS.
+A.V.I.: Sentinel neural core initialized.
+[A.V.I] Speech request sent to Ashley TTS.
+A.V.I.: Holographic interface synchronized.
+[A.V.I] Speech request sent to Ashley TTS.
+A.V.I.: Voice matrix calibrated and standing by.
+[A.V.I] Speech request sent to Ashley TTS.
+A.V.I.: Threat assessment protocols active.
+[A.V.I] Speech request sent to Ashley TTS.
+A.V.I.: All primary systems operational. I am ready.
+[A.V.I] Speech request sent to Ashley TTS.
+A.V.I.: Hello, Arnav! How can I assist you today?
+[A.V.I] Speech request sent to Ashley TTS.
+[A.V.I] Stopping LiveKit...
+[A.V.I] Stopping LiveKit...
+A.V.I. Speaker: Shutdown complete.
+[A.V.I] LiveKit disconnected: 1
+A.V.I. LiveKit voice agent stopped.

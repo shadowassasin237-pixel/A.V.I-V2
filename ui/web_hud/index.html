@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A.V.I. // ARTIFICIAL VOICE INTELLIGENCE</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="mode-tactical">
+
+    <!-- ══════════════════════════════════════════════════════════
+         BOOT OVERLAY (4-second animated holographic initialization)
+         ══════════════════════════════════════════════════════════ -->
+    <div id="boot-overlay">
+        <div class="boot-container">
+            <div class="boot-logo">
+                <span class="boot-logo-bracket">▸</span> A.V.I.
+            </div>
+            <div class="boot-subtitle">ARTIFICIAL VOICE INTELLIGENCE &nbsp;//&nbsp; NEURAL MATRIX</div>
+            <div class="boot-line"></div>
+            <div id="boot-log"></div>
+            <div class="boot-progress">
+                <div class="boot-progress-bar" id="boot-progress-bar"></div>
+            </div>
+            <div class="boot-status" id="boot-status">INITIALIZING SENTINEL PROTOCOL...</div>
+        </div>
+    </div>
+
+    <!-- ══════════════════════════════════════════════════════════
+         SCANLINE OVERLAY & NOTIFICATIONS
+         ══════════════════════════════════════════════════════════ -->
+    <div class="scanline-overlay"></div>
+    <div id="notification-container"></div>
+    <div class="modal-overlay" id="modal-overlay"></div>
+
+    <!-- ══════════════════════════════════════════════════════════
+         MAIN APPLICATION GRID WRAPPER
+         ══════════════════════════════════════════════════════════ -->
+    <div id="app-wrapper">
+
+        <!-- ─── HEADER ─── -->
+        <header id="header">
+            <div class="logo-container">
+                <div class="logo-text">
+                    <span style="color: #ff1133;">▸</span> A.V.I.
+                </div>
+                <div class="logo-subtitle">ARTIFICIAL VOICE INTELLIGENCE // SENTINEL PROTOCOL</div>
+            </div>
+
+            <div class="header-center" style="display:flex; align-items:center; gap:25px;">
+                <div class="status-indicator status-online">
+                    <span class="status-dot"></span>
+                    <span id="status-text">SYSTEM ONLINE</span>
+                </div>
+                <div class="threat-level" id="threat-level" style="font-size:11px; color:#ff3d5a; letter-spacing:1px;">
+                    ◆ THREAT LEVEL: NOMINAL
+                </div>
+            </div>
+
+            <div class="header-right" style="display:flex; align-items:center; gap:20px;">
+                <button class="hud-btn settings-btn" id="settings-btn" title="Open Configuration (⚙)">
+                    ⚙ CONFIG
+                </button>
+                <div class="clock-display" style="text-align:right;">
+                    <div class="clock-time" id="clock-time" style="font-family:'Orbitron',monospace; font-size:18px; font-weight:700; color:#ffe0e8;">00:00:00</div>
+                    <div class="clock-date" id="clock-date" style="font-size:9px; color:#6b1a2a; letter-spacing:1px;">LOADING...</div>
+                </div>
+            </div>
+        </header>
+
+        <!-- ─── LEFT PANEL: TELEMETRY & TACTICAL RADAR ─── -->
+        <aside id="left-panel">
+            <div style="font-family:'Orbitron',sans-serif; font-size:12px; font-weight:700; color:#ff1133; margin-bottom:15px; letter-spacing:1px; display:flex; justify-content:space-between;">
+                <span>◈ SYSTEM TELEMETRY</span>
+                <span style="color:#6b1a2a;">[LIVE]</span>
+            </div>
+
+            <!-- CPU -->
+            <div class="telemetry-block">
+                <div class="telemetry-header">
+                    <span>◈ CPU LOAD</span>
+                    <span class="telemetry-value" id="telem-cpu">0%</span>
+                </div>
+                <div class="gauge-container">
+                    <div class="gauge-fill" id="gauge-cpu" style="width: 0%"></div>
+                </div>
+            </div>
+
+            <!-- RAM -->
+            <div class="telemetry-block">
+                <div class="telemetry-header">
+                    <span>◈ MEMORY ALLOCATION</span>
+                    <span class="telemetry-value" id="telem-ram">0%</span>
+                </div>
+                <div class="gauge-container">
+                    <div class="gauge-fill" id="gauge-ram" style="width: 0%"></div>
+                </div>
+            </div>
+
+            <!-- GPU -->
+            <div class="telemetry-block">
+                <div class="telemetry-header">
+                    <span>◈ GPU ACCELERATION</span>
+                    <span class="telemetry-value" id="telem-gpu">N/A</span>
+                </div>
+                <div class="gauge-container">
+                    <div class="gauge-fill" id="gauge-gpu" style="width: 0%"></div>
+                </div>
+            </div>
+
+            <!-- POWER -->
+            <div class="telemetry-block">
+                <div class="telemetry-header">
+                    <span>◈ CORE FUSION POWER</span>
+                    <span class="telemetry-value" id="telem-power">98.2%</span>
+                </div>
+                <div class="gauge-container">
+                    <div class="gauge-fill" id="gauge-power" style="width: 98.2%"></div>
+                </div>
+            </div>
+
+            <!-- LATENCY -->
+            <div class="telemetry-block">
+                <div class="telemetry-header">
+                    <span>◈ NEURAL LATENCY</span>
+                    <span class="telemetry-value" id="telem-latency">18 MS</span>
+                </div>
+            </div>
+
+            <!-- NETWORK -->
+            <div class="telemetry-block">
+                <div class="telemetry-header">
+                    <span>◈ NETWORK LINK</span>
+                    <span class="telemetry-value" id="telem-network" style="color:#00ff66;">ONLINE</span>
+                </div>
+            </div>
+
+            <!-- VOICE STATUS -->
+            <div class="telemetry-block">
+                <div class="telemetry-header">
+                    <span>◈ VOICE SYNTHESIS</span>
+                    <span class="telemetry-value" id="telem-voice">STANDBY</span>
+                </div>
+            </div>
+
+            <!-- TTS PERSONA -->
+            <div class="telemetry-block">
+                <div class="telemetry-header">
+                    <span>◈ TTS PERSONA</span>
+                    <span class="telemetry-value" id="telem-persona">Arjun</span>
+                </div>
+            </div>
+
+            <!-- CURRENT PROTOCOL -->
+            <div class="telemetry-block">
+                <div class="telemetry-header">
+                    <span>◈ ACTIVE PROTOCOL</span>
+                    <span class="telemetry-value" id="telem-mode">TACTICAL</span>
+                </div>
+            </div>
+
+            <!-- RADAR -->
+            <div style="margin-top:20px; border-top:1px solid #200408; padding-top:15px;">
+                <div style="font-size:10px; color:#6b1a2a; margin-bottom:8px; text-transform:uppercase; letter-spacing:1px;">
+                    ◈ TACTICAL PERIMETER SCAN
+                </div>
+                <div class="radar-widget" id="radar">
+                    <div class="radar-sweep"></div>
+                    <div class="radar-ring"></div>
+                    <div class="radar-ring"></div>
+                    <div id="radar-blips"></div>
+                </div>
+            </div>
+
+            <!-- PROCESS LIST -->
+            <div style="margin-top:10px; border-top:1px solid #200408; padding-top:12px; font-size:11px;">
+                <div style="color:#6b1a2a; margin-bottom:6px;">◈ RUNNING PROTOCOLS</div>
+                <div style="display:flex; justify-content:space-between; margin-bottom:4px;">
+                    <span style="color:#ffe0e8;">SENTINEL CORE</span>
+                    <span style="color:#00ff66;">ACTIVE</span>
+                </div>
+                <div style="display:flex; justify-content:space-between; margin-bottom:4px;">
+                    <span style="color:#ffe0e8;">NEURAL BRAIN</span>
+                    <span style="color:#00ff66;">ACTIVE</span>
+                </div>
+                <div style="display:flex; justify-content:space-between; margin-bottom:4px;">
+                    <span style="color:#ffe0e8;">LIVEKIT TTS</span>
+                    <span style="color:#ffaa00;" id="telem-livekit-status">STANDBY</span>
+                </div>
+            </div>
+        </aside>
+
+        <!-- ─── CENTER VIEWPORT: 3D HOLOGRAPHIC REACTOR ─── -->
+        <section id="center-viewport">
+            <div class="hex-grid"></div>
+
+            <div style="position:absolute; top:16px; left:20px; font-family:'Orbitron',sans-serif; font-size:12px; color:#ff1133; letter-spacing:2px; z-index:5;">
+                A.V.I. CORE REACTOR &nbsp;//&nbsp; THREE.JS WEBGL
+            </div>
+
+            <div style="position:absolute; top:16px; right:20px; font-size:11px; color:#ff3d5a; z-index:5; display:flex; align-items:center; gap:12px;">
+                <span id="ind-state">STATE: IDLE</span>
+                <span style="color:#6b1a2a;">|</span>
+                <span id="ind-fps">60 FPS</span>
+            </div>
+
+            <!-- The 3D Canvas Container -->
+            <div id="reactor-container" style="width:100%; height:100%; position:relative;"></div>
+
+            <!-- Reactive Audio Spectrum Visualizer -->
+            <div class="audio-spectrum" id="audio-spectrum" style="position:absolute; bottom:20px; width:60%; z-index:5;">
+                <div class="spectrum-bar"></div>
+                <div class="spectrum-bar"></div>
+                <div class="spectrum-bar"></div>
+                <div class="spectrum-bar"></div>
+                <div class="spectrum-bar"></div>
+                <div class="spectrum-bar"></div>
+                <div class="spectrum-bar"></div>
+                <div class="spectrum-bar"></div>
+                <div class="spectrum-bar"></div>
+                <div class="spectrum-bar"></div>
+                <div class="spectrum-bar"></div>
+                <div class="spectrum-bar"></div>
+                <div class="spectrum-bar"></div>
+                <div class="spectrum-bar"></div>
+                <div class="spectrum-bar"></div>
+                <div class="spectrum-bar"></div>
+                <div class="spectrum-bar"></div>
+                <div class="spectrum-bar"></div>
+                <div class="spectrum-bar"></div>
+                <div class="spectrum-bar"></div>
+            </div>
+
+            <div style="position:absolute; bottom:6px; font-size:9px; color:#6b1a2a; letter-spacing:2px; z-index:5;">
+                ▸ HOLOGRAPHIC CONVERGENCE PROTOCOL ◂
+            </div>
+        </section>
+
+        <!-- ─── RIGHT PANEL: NEURAL CHAT CONSOLE ─── -->
+        <aside id="right-panel">
+            <div style="padding:15px; border-bottom:1px solid #200408; display:flex; justify-content:space-between; align-items:center;">
+                <div style="font-family:'Orbitron',sans-serif; font-size:12px; font-weight:700; color:#ff1133; letter-spacing:1px;">
+                    ◈ NEURAL ACTIVITY CONSOLE
+                </div>
+                <button class="hud-btn" id="clear-chat-btn" style="padding:2px 8px; font-size:10px;" title="Clear Conversation">
+                    ✕ CLEAR
+                </button>
+            </div>
+
+            <!-- Chat history with glowing slidebars -->
+            <div id="chat-log">
+                <div class="msg-container msg-system">
+                    <div class="msg-meta">
+                        <span class="msg-timestamp">[SYSTEM]</span>
+                        <span class="msg-sender">CORE</span>
+                    </div>
+                    <div class="msg-content">A.V.I. Neural Hub online. Sentinel protocols engaged. How may I assist you, Commander?</div>
+                </div>
+            </div>
+        </aside>
+
+        <!-- ─── BOTTOM COMMAND BAR ─── -->
+        <footer id="bottom-bar">
+            <div class="command-wrapper">
+                <input type="text" id="command-input" placeholder="Type command or query for A.V.I. (or press F1 / click MIC to speak)..." autocomplete="off" spellcheck="false">
+            </div>
+
+            <div style="display:flex; align-items:center; gap:10px; margin-right:18px;">
+                <button class="hud-btn mic-btn" id="mic-btn" title="Microphone Access (Shortcut: F1)">
+                    ◉ MIC
+                </button>
+                <button class="hud-btn primary transmit-btn" id="transmit-btn" title="Transmit to Brain (Shortcut: Enter)">
+                    ▸ TRANSMIT
+                </button>
+            </div>
+
+            <!-- Mode Selector Switcher -->
+            <div style="display:flex; align-items:center; gap:8px;">
+                <button class="mode-btn active" data-mode="tactical" title="Full Command Center">TACTICAL</button>
+                <button class="mode-btn" data-mode="sentinel" title="Autonomous Defense">SENTINEL</button>
+                <button class="mode-btn" data-mode="focus" title="Expand Core & Focus Mode">FOCUS</button>
+                <button class="mode-btn" data-mode="diagnostic" title="System Telemetry">DIAG</button>
+                <button class="mode-btn" data-mode="god" title="Overclocked Red Energy">GOD MODE</button>
+            </div>
+        </footer>
+
+    </div>
+
+    <!-- ══════════════════════════════════════════════════════════
+         SETTINGS SLIDE-IN MODAL
+         ══════════════════════════════════════════════════════════ -->
+    <div id="settings-panel">
+        <div class="settings-header">
+            <div>⚙ SYSTEM CONFIGURATION</div>
+            <button class="hud-btn" id="settings-close" style="padding:3px 8px; font-size:11px;">✕ CLOSE</button>
+        </div>
+
+        <div style="overflow-y:auto; flex:1; display:flex; flex-direction:column; gap:18px; padding-right:5px;">
+            <!-- OpenRouter API Key -->
+            <div class="settings-group">
+                <label>OPENROUTER API KEY</label>
+                <div style="display:flex; gap:8px;">
+                    <input type="password" class="settings-input" id="settings-api-key" placeholder="sk-or-v1-..." style="flex:1;">
+                    <button class="hud-btn" id="toggle-api-key" style="padding:6px 10px; font-size:11px;">SHOW</button>
+                </div>
+                <div id="api-key-status" style="font-size:10px; color:#ff3d5a;">▸ Checking key status...</div>
+            </div>
+
+            <!-- LLM Model -->
+            <div class="settings-group">
+                <label>LLM MODEL (OPENROUTER)</label>
+                <input type="text" class="settings-input" id="settings-model" list="models-datalist" placeholder="e.g. anthropic/claude-3.5-sonnet">
+                <datalist id="models-datalist">
+                    <option value="anthropic/claude-3.5-sonnet">
+                    <option value="openai/gpt-4o">
+                    <option value="openai/gpt-4o-mini">
+                    <option value="google/gemini-pro-1.5">
+                    <option value="meta-llama/llama-3.3-70b-instruct">
+                    <option value="deepseek/deepseek-chat">
+                </datalist>
+            </div>
+
+            <!-- TTS Voice -->
+            <div class="settings-group">
+                <label>INWORLD / LIVEKIT TTS VOICE</label>
+                <select class="settings-input" id="settings-voice">
+                    <option value="Arjun">Arjun (Male Indian English - Default)</option>
+                    <option value="Priya">Priya (Female Indian English)</option>
+                    <option value="Ashley">Ashley (Female American)</option>
+                    <option value="Mark">Mark (Male American)</option>
+                    <option value="Sarah">Sarah (Female American)</option>
+                    <option value="Brian">Brian (Male American)</option>
+                    <option value="Wendy">Wendy (Female American)</option>
+                    <option value="Deborah">Deborah (Female American)</option>
+                    <option value="Alex">Alex (Male American)</option>
+                    <option value="Emma">Emma (Female British)</option>
+                    <option value="Hana">Hana (Female Japanese Accent)</option>
+                    <option value="Ian">Ian (Male British)</option>
+                </select>
+            </div>
+
+            <!-- LiveKit Settings -->
+            <div class="settings-group">
+                <label>LIVEKIT SERVER URL</label>
+                <input type="text" class="settings-input" id="settings-lk-url" placeholder="wss://your-project.livekit.cloud">
+            </div>
+
+            <div class="settings-group">
+                <label>LIVEKIT API KEY</label>
+                <div style="display:flex; gap:8px;">
+                    <input type="password" class="settings-input" id="settings-lk-key" placeholder="API Key" style="flex:1;">
+                    <button class="hud-btn" id="toggle-lk-key" style="padding:6px 10px; font-size:11px;">SHOW</button>
+                </div>
+            </div>
+
+            <div class="settings-group">
+                <label>LIVEKIT API SECRET</label>
+                <div style="display:flex; gap:8px;">
+                    <input type="password" class="settings-input" id="settings-lk-secret" placeholder="API Secret" style="flex:1;">
+                    <button class="hud-btn" id="toggle-lk-secret" style="padding:6px 10px; font-size:11px;">SHOW</button>
+                </div>
+            </div>
+
+            <!-- Storage Info -->
+            <div style="border-top:1px solid #200408; padding-top:10px; font-size:10px; color:#6b1a2a;" id="config-path-display">
+                ▸ Config File: ~/.avi_config.json
+            </div>
+        </div>
+
+        <div style="display:flex; flex-direction:column; gap:10px; margin-top:15px;">
+            <button class="save-btn" id="save-settings-btn">
+                ▸ SAVE CONFIGURATION
+            </button>
+            <button class="hud-btn" id="save-restart-btn" style="width:100%; font-size:11px; padding:10px;">
+                ▸ SAVE & RESTART VOICE AGENT
+            </button>
+        </div>
+    </div>
+
+    <!-- ══════════════════════════════════════════════════════════
+         SCRIPTS: THREE.JS, CORE 3D, API BRIDGE, HUD CONTROLLER
+         ══════════════════════════════════════════════════════════ -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="js/core3d.js"></script>
+    <script src="js/api.js"></script>
+    <script src="js/hud.js"></script>
+
+</body>
+</html>
