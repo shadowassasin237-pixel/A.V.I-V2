@@ -38,16 +38,27 @@ async def avi_voice_session(ctx: JobContext):
     # Lock to queue speech requests linearly
     speech_lock = asyncio.Lock()
 
-    # Dedicated TTS-only session (STT and LLM omitted so the agent doesn't talk on its own)
-    session = AgentSession(
-        tts=inference.TTS(
-            model="inworld/inworld-tts-2",
-            voice=AVI_VOICE,
-            language=AVI_TTS_LANGUAGE,
-        )
+    # Dedicated TTS-only engine: the agent has no STT and no LLM, so it
+    # never speaks on its own. It only ever calls say() with text we hand
+    # it on the `avi.speak` data topic from the desktop GUI.
+    avi_tts = inference.TTS(
+        model="inworld/inworld-tts-2",
+        voice=AVI_VOICE,
+        language=AVI_TTS_LANGUAGE,
     )
 
-    await session.start(room=ctx.room)
+    agent = Agent(
+        instructions=(
+            "A.V.I. dedicated TTS voice engine. "
+            "Speak only the text provided by the desktop GUI on the "
+            "'avi.speak' data topic. Do not generate replies on your own."
+        ),
+        tts=avi_tts,
+    )
+
+    session = AgentSession(tts=avi_tts)
+
+    await session.start(agent=agent, room=ctx.room)
     await ctx.connect()
 
     async def publish_ready():
@@ -62,7 +73,7 @@ async def avi_voice_session(ctx: JobContext):
                 reliable=True,
                 topic="avi.ready",
             )
-            logger.info("A.V.I. Priya TTS is READY.")
+            logger.info(f"A.V.I. {AVI_VOICE} TTS is READY.")
         except Exception:
             logger.exception("Could not publish avi.ready.")
 
@@ -114,7 +125,7 @@ async def avi_voice_session(ctx: JobContext):
         asyncio.create_task(speak_and_signal())
 
     await publish_ready()
-    logger.info("A.V.I. voice system online. Dedicated TTS ready.")
+    logger.info(f"A.V.I. voice system online. {AVI_VOICE} TTS ready.")
     await asyncio.Event().wait()
 
 
